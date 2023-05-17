@@ -7,6 +7,13 @@ def random_city():
     num = random.randint(0,len(list))
     return list[num]
 
+
+def Alvinite_status():
+ list2 = ["Midlane Ashe", "Broken arm", "methed up", "Talk of Alvin valued contributor", "AHS tree lover", "Captain D's rewards member", "Earl Humbird campaign manager", "Joel Castro's scorned ex-lover"]
+ num = random.randint(0,len(list2))
+ return list2[num]
+ 
+
 def get_valid_word(list):
     invalid_letter = False
     validated_word = False
@@ -39,9 +46,10 @@ used_letters = []
 lives = 7
 winner = False
 winner_location = random_city()
+alvinite_status = Alvinite_status()
 
 while lives > 0 and winner == False:
-    print("Alvinite Status: ")
+    print(f"Alvinite Status: {alvinite_status}" )
     print(gallows[lives])
     print("You have " + str(lives) + " meth hits left.")
     display_word = word_display(word.upper(), word_letters)
@@ -52,13 +60,19 @@ while lives > 0 and winner == False:
         user_letter = input("Please guess a letter: ").upper()
         if len(user_letter) != 1: 
             print("I know this game might not be obvious because you were put through the AISD school system, but this must be a single character.")
+            print(f"Alvinite Status: {alvinite_status}" )
             continue
         elif user_letter not in alphabet:
             print("Must be valid letter. They recently added letters to the Alvin Elementary School curriculum, but may not have taught them while you were there.")
+            print(f"Alvinite Status: {alvinite_status}" )
             continue
         elif user_letter in used_letters:
             print("You have already used this letter. Please try again. This is not like the school board elections where you choose the same thing every time forever.")
+            print(f"Alvinite Status: {alvinite_status}" )
             continue
+        elif user_letter != word_letters:
+            print("You really are from Alvin, huh?")
+            print(f"Alvinite Status: {alvinite_status}" )
         else:
             input_valid = True
     if user_letter in word.upper():
@@ -76,6 +90,6 @@ while lives > 0 and winner == False:
         print(word_display(word, word_letters))
 
 if winner == False:
-    print("Alvinite Status: ")
+    print(f"Alvinite Status: {alvinite_status}" )
     print(gallows[lives])
     print("Oh no, you died because too much meth! By the way, the word was", word)
