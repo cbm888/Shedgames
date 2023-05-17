@@ -38,56 +38,67 @@ def word_display(word,word_letters):
             display += "_"
     return display
 
-gallows = shedman_visual.lives_visual_dict 
-imported_word_list = words.words
-word = get_valid_word(imported_word_list).upper()
-word_letters = set(word.upper())
-alphabet = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"}
-used_letters = []
-lives = 7
-winner = False
-winner_location = random_city()
-alvinite_status = Alvinite_status()
+def play_game():
+    winner = False   
+    gallows = shedman_visual.lives_visual_dict 
+    imported_word_list = words.words
+    word = get_valid_word(imported_word_list).upper()
+    word_letters = set(word.upper())
+    alphabet = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"}
+    used_letters = []
+    lives = 7
+    winner = False
+    winner_location = random_city()
+    alvinite_status = Alvinite_status()
 
-while lives > 0 and winner == False:
-    print(gallows[lives])
-    print("You have " + str(lives) + " meth hits left.")
-    display_word = word_display(word.upper(), word_letters)
-    print("Current word: " + display_word)
-    print("You have used the letters: " + str(used_letters))
-    input_valid = False
-    while not input_valid:
-        user_letter = input("Please guess a letter: ").upper()
-        if len(user_letter) != 1: 
-            print("I know this game might not be obvious because you were put through the AISD school system, but this must be a single character.")
+    while lives > 0 and not winner:
+        print(gallows[lives])
+        print("You have " + str(lives) + " meth hits left.")
+        display_word = word_display(word.upper(), word_letters)
+        print("Current word: " + display_word)
+        print("You have used the letters: " + str(used_letters))
+        input_valid = False
+        while not input_valid:
+            user_letter = input("Please guess a letter: ").upper()
+            if len(user_letter) != 1: 
+                print("I know this game might not be obvious because you were put through the AISD school system, but this must be a single character.")
+                print(f"Alvinite Status: {alvinite_status}" )
+                continue
+            elif user_letter not in alphabet:
+                print("Must be valid letter. They recently added letters to the Alvin Elementary School curriculum, but may not have taught them while you were there.")
+                print(f"Alvinite Status: {alvinite_status}" )
+                continue
+            elif user_letter in used_letters:
+                print("You have already used this letter. Please try again. This is not like the school board elections where you choose the same thing every time forever.")
+                print(f"Alvinite Status: {alvinite_status}" )
+                continue
+            else:
+                input_valid = True
+        if user_letter in word.upper():
+            used_letters.append(user_letter)
+            word_letters.remove(user_letter)
+            print("You guessed correctly! Lets get out the grill and celebrate.")
+        else: 
+            used_letters.append(user_letter)
+            lives -= 1
+            print("The letter is not in the word. Spicy spaghetti for your kids. Please try again.")
             print(f"Alvinite Status: {alvinite_status}" )
-            continue
-        elif user_letter not in alphabet:
-            print("Must be valid letter. They recently added letters to the Alvin Elementary School curriculum, but may not have taught them while you were there.")
-            print(f"Alvinite Status: {alvinite_status}" )
-            continue
-        elif user_letter in used_letters:
-            print("You have already used this letter. Please try again. This is not like the school board elections where you choose the same thing every time forever.")
-            print(f"Alvinite Status: {alvinite_status}" )
-            continue
-        else:
-            input_valid = True
-    if user_letter in word.upper():
-        used_letters.append(user_letter)
-        word_letters.remove(user_letter)
-        print("You guessed correctly! Lets get out the grill and celebrate.")
-    else: 
-        used_letters.append(user_letter)
-        lives -= 1
-        print("The letter is not in the word. Spicy spaghetti for your kids. Please try again.")
+        display_word = word_display(word.upper(), word_letters)
+        if "_" not in display_word:
+            winner = True
+            print(f"Congratulations! You got it! You get to shed {winner_location} now.")
+            print(word_display(word, word_letters))
+
+    if not winner:
         print(f"Alvinite Status: {alvinite_status}" )
-    display_word = word_display(word.upper(), word_letters)
-    if "_" not in display_word:
-        winner = True
-        print(f"Congratulations! You got it! You get to shed {winner_location} now.")
-        print(word_display(word, word_letters))
+        print(gallows[lives])
+        print("Oh no, you died because too much meth! By the way, the word was", word)
 
-if winner == False:
-    print(f"Alvinite Status: {alvinite_status}" )
-    print(gallows[lives])
-    print("Oh no, you died because too much meth! By the way, the word was", word)
+play_game()
+
+restart = input("Do you want to play again? (yes/no): ")
+while restart.lower() == "yes":
+    play_game()
+    restart = input("Do you want to play again? (yes/no): ")
+    if restart.lower() == "no":
+        break
