@@ -2,10 +2,11 @@ import random
 import shedman_visual
 import words
 
+
 def random_city():
-    list = ["back to Alvin", "to Crosby", "to Conroe", "to Bastrop", "to Lockhart", "to Pflugerville with Goss"]
-    num = random.randint(0,len(list))
-    return list[num]
+    city_list = ["back to Alvin", "to Crosby", "to Conroe", "to Bastrop", "to Lockhart", "to Pflugerville with Goss"]
+    random_city = random.choice(city_list)
+    return random_city
 
 
 def Alvinite_status():
