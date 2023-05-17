@@ -70,10 +70,6 @@ while lives > 0 and winner == False:
             print("You have already used this letter. Please try again. This is not like the school board elections where you choose the same thing every time forever.")
             print(f"Alvinite Status: {alvinite_status}" )
             continue
-        elif user_letter != word_letters:
-            print("You really are from Alvin, huh?")
-            print(f"Alvinite Status: {alvinite_status}" )
-            continue
         else:
             input_valid = True
     if user_letter in word.upper():
