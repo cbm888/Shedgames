@@ -49,9 +49,10 @@ def play_game():
     lives = 7
     winner = False
     winner_location = random_city()
-    alvinite_status = Alvinite_status()
+    
 
     while lives > 0 and not winner:
+        alvinite_status = Alvinite_status()
         print(gallows[lives])
         print("You have " + str(lives) + " meth hits left.")
         display_word = word_display(word.upper(), word_letters)
