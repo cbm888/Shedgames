@@ -50,7 +50,6 @@ winner_location = random_city()
 alvinite_status = Alvinite_status()
 
 while lives > 0 and winner == False:
-    print(f"Alvinite Status: {alvinite_status}" )
     print(gallows[lives])
     print("You have " + str(lives) + " meth hits left.")
     display_word = word_display(word.upper(), word_letters)
