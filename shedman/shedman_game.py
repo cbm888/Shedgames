@@ -80,6 +80,7 @@ while lives > 0 and winner == False:
         used_letters.append(user_letter)
         lives -= 1
         print("The letter is not in the word. Spicy spaghetti for your kids. Please try again.")
+        print(f"Alvinite Status: {alvinite_status}" )
     display_word = word_display(word.upper(), word_letters)
     if "_" not in display_word:
         winner = True
