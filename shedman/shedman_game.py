@@ -74,6 +74,7 @@ while lives > 0 and winner == False:
         elif user_letter != word_letters:
             print("You really are from Alvin, huh?")
             print(f"Alvinite Status: {alvinite_status}" )
+            continue
         else:
             input_valid = True
     if user_letter in word.upper():
