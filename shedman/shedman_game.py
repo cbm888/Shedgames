@@ -9,9 +9,9 @@ def random_city():
 
 
 def Alvinite_status():
- list2 = ["Midlane Ashe", "Broken arm", "methed up", "Talk of Alvin valued contributor", "AHS tree lover", "Captain D's rewards member", "Earl Humbird campaign manager", "Joel Castro's scorned ex-lover"]
- num = random.randint(0,len(list2))
- return list2[num]
+    list2 = ["Midlane Ashe", "Broken arm", "methed up", "Talk of Alvin valued contributor", "AHS tree lover", "Captain D's rewards member", "Earl Humbird campaign manager", "Joel Castro's scorned ex-lover"]
+    random_status = random.choice(list2)
+    return random_status
  
 
 def get_valid_word(list):
